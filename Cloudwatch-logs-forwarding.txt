@@ -1,0 +1,29 @@
+Install agent from aws documentation.
+1. create a role and asign permission to the it s3 & cloudwatch and modify role into ec2 instance.
+2. yum install awslogs -y 
+
+Additionally provide more logs path location into this conf file., Conf file to move logs from aws to cloudwatch metrics 
+
+/var/awslogs/etc/awslogs.conf
+
+Most of the service are integrated with cloudwatch logs 
+but ELB are not integrated look into steps to integrate this cloudwatch.
+
+Use this policy and assign into bucket policy
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "logdelivery.elasticloadbalancing.amazonaws.com"
+      },
+      "Action": "s3:PutObject",
+      "Resource": "my-s3-arn"
+    }
+  ]
+}
+
+
+

@@ -1,0 +1,5 @@
+aws s3 mv /var/log/ansible.log.08132024.tar.gz s3://myawsbucket-ansible-log/
+
+aws s3 mv /tmp/jpeg s3://myawsbucket-ansible-log/ \
+    --recursive \
+    --exclude "*.jpg"

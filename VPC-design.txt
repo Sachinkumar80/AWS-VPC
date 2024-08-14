@@ -1,0 +1,38 @@
+Region: us-west-1
+VPC Range: 172.20.0.0/16
+4 Subnets: 2 pub sub, 2 private subnet
+2 zones, us-west-1a, us-west-1b
+
+Subnets
+172.20.1.0/24 => pub-sub-1[us-west-1a]
+172.20.2.0/24 => pub-sub-2[us-west-1b]
+172.20.3.0/24 => priv-sub-1[us-west-1a]
+172.20.4.0/24 => priv-sub-2[us-west-1b]
+
+Network component
+1 Internet Gateway
+2 NAT Gateway
+3 EIP
+2 Route Tables; Pub Sub RT, 1 Priv Sub RT
+1 Bastion host in Pub subnet
+
+NACL 
+1 more VPC => VPC Peering
+
+
+#####################
+VPC peering connection to communicate traffic between both different VPC
+vpc-1 = 172.20.0.0/16 
+vpc-2 = 172.22.0.0/16 
+
+Accept request of vpc peering =>
+Entry in Route table of both vpc-1 & vpc-2 with cidr range.
+
+For example
+172.20.0.0/16    peering connection
+
+Entry in Security group
+allow 22 from entire range 172.20.0.0/16
+allow 22 from a subnet range 172.20.2.0/24
+allow 22 from single ec2-instance 172.20.25.45/32
+
